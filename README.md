@@ -17,7 +17,7 @@ Then you are all set!
 
 ## Requirements
 
-* [youtube-dl](www.github.com/rg3/youtube-dl)
+* [youtube-dl](https://github.com/rg3/youtube-dl)
 * ffmpeg or avconv and ffprobe or avprobe
 
 ## Description
