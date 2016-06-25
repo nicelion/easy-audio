@@ -64,17 +64,17 @@ To turn on auto-clear, simply type the following when easy-audio is running:
 
 You will be promted to provide "y" or "n". "y" will turn it on and "n" will either turn it off, or just cancel.
 
-#### silent-mode
+#### quiet-mode
 
-youtube-dl will not show any output when silent-mode is on. 
+youtube-dl will not show any output when quiet-mode is on. 
 
-To turn silent-mode on, simply type the following when easy0audio is running:
+To turn quiet-mode on, simply type the following when easy0audio is running:
 
-    silent-mode
+    quiet-mode
   
   -Or-
   
-    silent
+    quiet
   
   You will be promted to provide "y" or "n". "y" will turn it on and "n" will either turn it off, or just cancel.
 
