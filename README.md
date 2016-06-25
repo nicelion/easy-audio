@@ -77,6 +77,15 @@ To turn silent-mode on, simply type the following when easy0audio is running:
     silent
   
   You will be promted to provide "y" or "n". "y" will turn it on and "n" will either turn it off, or just cancel.
+
+## FAQ
+
+Since easy-audio is very new and hardly anyone is using it, this really isn't "frequently asked questions," this is more of a "maybe some questions you have" section.
+
+##### Q: I looked at the code of easy-audio, why does it look like a three year old who knows nothing about programming wrote it?
+A: Well the awnser to that is, the person who wrote it knows hardly anything about programming. Well, at least bash. I have been programming for about 3 years, and as of writing this, only about two weeks in the bash programing language. This was my first program. It's simple and it works. For my purposes at least.
+
+
   
 ## Copyright
 
