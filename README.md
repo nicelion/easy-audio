@@ -1,5 +1,5 @@
 # easy-audio
-a simple command line tool that works with youtube-dl making downloading audio eastier
+a simple command line tool that works with youtube-dl making downloading audio easier
 
 ##  Installation
 
