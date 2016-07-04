@@ -1,0 +1,223 @@
+#!/bin/bash
+
+red=`tput setaf 1`
+white=`tput setaf 7`
+yellow=`tput setaf 3`
+reset=`tput sgr0`
+bold='tput bold'
+
+version="Version 1.0. Released: June 20, 2016. "
+
+clear="clear"
+
+isAutoClearOn=false
+
+isRunningCustomOutPut=false
+isQuietModeOn=false
+
+autoClearAnswer=""
+
+
+programStart() {
+
+	eval $clear 
+
+	echo "$(tput bold)Welcome to easy-audio by Nice Lion Technologies!${reset}"
+	echo "${red}[NOTE:]${reset} Make sure you have changed into the desired folder for your audio files to be exported in. If you fail to do so, files will be exported in to your main directory."
+	
+	read -p "${white}$(tput bold)Enter a link to the desired audio, or a command.${reset} " link 
+
+}
+
+readInput() {
+
+	if [[ $isAutoClearOn = true ]]
+		 then
+		 read -p "${yellow}[auto-clear] ${white}$(tput bold)Enter a link to the desired audio, or a command.${reset} " link 
+	elif [[ $isQuietModeOn = true ]]
+		then
+		read -p "${yellow}[quiet-mode] ${white}$(tput bold)Enter a link to the desired audio, or a command.${reset} " link
+	else
+		read -p "${white}$(tput bold)Enter a link to the desired audio, or a command.${reset} " link 
+	fi
+	checkValidity
+
+}
+
+endProgram() {
+
+	echo "${white}$(tput bold)Thanks for using easy-audio by Nice Lion Technologies!${reset}"
+	exit
+
+}
+
+help(){
+
+	echo ""
+
+}
+
+checkValidity() {
+
+	if [[ $link == *"https://"* ]] || [[ $link == *"http://"* ]]
+		then
+		checkVideo
+	else
+		checkCommand
+	fi
+
+}
+
+checkVideo() {
+
+	if [[ $link == *"playlist"* ]]
+		then
+			# Video is playlist
+
+			if [[ $isQuietModeOn = true ]]
+				then
+				quietPlaylist="youtube-dl -q --extract-audio --audio-format mp3 --output \"%(playlist_index)s%(title)s.%(ext)s\" $link"
+				eval $quietPlaylist
+			else
+
+				playlist="youtube-dl --extract-audio --audio-format mp3 --output \"%(playlist_index)s%(title)s.%(ext)s\" $link";
+				eval $playlist;
+
+			if [[ $isAutoClearOn = true ]]
+				then 
+				programStart
+			
+			fi
+		fi
+			readInput;
+
+		else
+
+			if [[ $isQuietModeOn = true ]]
+				then
+				quietNotPlaylist="youtube-dl -q --extract-audio --audio-format mp3 --output \"%(title)s.%(ext)s\" $link";
+				eval $quietNotPlaylist
+			else
+
+			notplaylist="youtube-dl --extract-audio --audio-format mp3 --output \"%(title)s.%(ext)s\" $link";
+	 		eval $notplaylist;
+			
+			if [[ $isAutoClearOn = true ]]
+				then 
+				programStart
+			fi
+
+			readInput;
+		fi
+	fi
+}
+
+autoClear() {
+
+	if [[ $isQuietModeOn = true ]] 
+		then 
+		echo "${red}[ERROR]${reset} Cannot turn auto-clear on when quiet-mode is turned on."
+	else 
+
+		if [[ $autoClearAnswer = "y" ]]
+				then
+				echo "auto-clear has been turned on."
+				isAutoClearOn=true
+			else
+				if [[ $autoClearAnswer = "n" ]]
+					then
+					echo "auto-clear has been disabled."
+					isAutoClearOn=false
+				else 
+					if [[ $autoClearAnswer = "?" ]]
+						then
+						echo "With auto-clear turned on, after each file is downloaded, converted, and the original file is deleted, the log will be cleared providing a cleaner look."
+						echo "auto-clear can be turned on my typing the command \"auto-clear\" and passing \"y\"."
+						readInput
+					fi
+				fi
+			fi
+		fi
+}
+
+quietMode() {
+
+	if [[ $isAutoClearOn = true ]] 
+		then 
+		echo "${red}[ERROR]${reset} Cannot turn quiet-mode on if auto-clear is on."
+	else
+
+		if [[ $quietModeAnswer = "y" ]]
+				then
+				echo "quiet-mode has been turned on."
+				isQuietModeOn=true
+			else
+				if [[ $quietModeAnswer = "n" ]]
+					then
+					echo "quiet-mode has been disabled."
+					isQuietModeOn=false
+				else 
+					if [[ $quietModeAnswer = "?" ]]
+						then
+						echo "With quiet-mode turned on, youtube-dl's output will not be shown. Once the download is finished, you will be prompted to to provide another link."
+						echo "quiet-mode can be turned on my typing the command \"quiet-mode\" or \"quiet\" and passing \"y\"."
+						readInput
+					fi
+				fi
+			fi
+		fi
+
+}
+
+checkCommand() {
+
+	if [[ $link = "end" ]]
+		then
+
+		endProgram;
+
+	elif [[ $link = "clear" ]]
+			then 
+
+			programStart;
+	elif [[ $link = "pwd" ]] || [[ $link = "directory" ]] || [[ $link = "current-directory" ]]
+			then
+			pwd
+			readInput
+	elif [[ $link = "auto-clear" ]]
+			then
+			read -p "Turn auto-clear on? Pass \"?\" for more info. (y/n) " autoClearAnswer
+			autoClear
+			readInput
+	elif [[ $link = "version" ]]
+			then
+			echo $version;
+			echo "Check http://www.nicelion.com/easy-audio for updates.";
+	 		echo "You can also follow @niceliontech on Twitter or Instagram for updates.";
+	 elif [[ $link = "quiet-mode" ]] || [[ $link = "quiet" ]] 
+	 	then
+	 		read -p "Turn quiet-mode on? Pass \"?\" for more info. (y/n) " quietModeAnswer
+			quietMode
+			readInput
+	elif [[ $link = "licence" ]]
+		then
+		licence="curl https://raw.githubusercontent.com/nicelion/easy-audio/master/LICENSE"
+		eval $licence
+	elif [[ $link = "help" ]]
+		then
+		helpCommand="curl http://www.nicelion.com/easy-audio/help.txt"
+		eval $helpCommand
+	 else
+
+	 	echo "${red}$(tput bold)[ERROR]${reset}${white} Please enter a valid link, or a valid command. Pass \"help\" for help, or \"end\" to end easy-audio."
+		# readInput;
+
+	fi
+
+	readInput
+
+}
+
+
+programStart
+checkValidity
