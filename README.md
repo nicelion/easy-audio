@@ -15,6 +15,8 @@ Then, to make it work:
 
 Then you are all set! 
 
+NOTE: easy-audio was created on a Mac using Mac OS X. easy-audio has not been tested on other operating systems. 
+
 ## Requirements
 
 * [youtube-dl](https://github.com/rg3/youtube-dl)
