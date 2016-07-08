@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>easy-audio by nicelion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">easy-audio</h1>
+      <h2 class="project-tagline">a simple command line tool that works with youtube-dl making downloading audio easier</h2>
+      <a href="https://github.com/nicelion/easy-audio" class="btn">View on GitHub</a>
+      <a href="https://github.com/nicelion/easy-audio/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/nicelion/easy-audio/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="easy-audio" class="anchor" href="#easy-audio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>easy-audio</h1>
+
+<p>a simple command line tool that works with youtube-dl making downloading audio easier</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Installing easy-audio is quite easy on OS X using cURL. Do the following in Terminal</p>
+
+<pre><code>$ sudo curl -L http://www.easyaudio.nicelion.com -o /usr/local/bin/easy-audio
+</code></pre>
+
+<p>If curl doesn't work, download this repository. Once downloaded open Finder and type CMD+G. Input /usr/local/bin. Then, drag the easy-audio file from this repository into the bin. Then, see below to make it work.</p>
+
+<p>Then, to make it work: </p>
+
+<pre><code>$ sudo chmod +x /usr/local/bin/easy-audio
+</code></pre>
+
+<p>Then you are all set! </p>
+
+<p>NOTE: easy-audio was created on a Mac using Mac OS X. easy-audio has not been tested on other operating systems. </p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li><a href="https://github.com/rg3/youtube-dl">youtube-dl</a></li>
+<li>ffmpeg or avconv and ffprobe or avprobe</li>
+</ul>
+
+<h2>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Description</h2>
+
+<p>easy-audio "piggy-backs" off of rg3's <a href="https://github.com/rg3/youtube-dl">youtube-dl.</a> easy-audio makes downloading mp3s from YouTube quicker and simpler.</p>
+
+<h5>
+<a id="youtube-dl-vs-easy-audio" class="anchor" href="#youtube-dl-vs-easy-audio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>youtube-dl vs easy-audio:</h5>
+
+<p>In youtube-dl, the command you enter may look like this:</p>
+
+<pre><code>$ youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=2HQaBWziYvY
+</code></pre>
+
+<p>In easy-audio, all you type in the Terminal is:</p>
+
+<pre><code>$ easy-audio
+</code></pre>
+
+<p>You are then prompted to provide a link, and your file will download.</p>
+
+<h2>
+<a id="commands" class="anchor" href="#commands" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Commands</h2>
+
+<p>When you start easy-audio, you will be asked to provide a link or a command. Below are a list of the commands you can use to get more information about the program, or some customization options.</p>
+
+<pre><code>end                           Ends easy-audio
+
+clear                         Clears all youtube-dl output and previous files you downloaded
+
+pwd, directory,               Outputs the current directory you are in. This is where your files will be exported
+current-directory
+
+version                       Outputs the version number of easy-audio
+
+licence                       Outputs the easy-audio licence. (MIT Licence if you are wondering)
+
+help                          Outputs and lists some help options.
+</code></pre>
+
+<h4>
+<a id="auto-clear" class="anchor" href="#auto-clear" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>auto-clear</h4>
+
+<p>By turning auto-clear on, after each file is downloaded, Terminal will clear. </p>
+
+<p>To turn on auto-clear, simply type the following when easy-audio is running:</p>
+
+<pre><code>auto-clear
+</code></pre>
+
+<p>You will be promted to provide "y" or "n". "y" will turn it on and "n" will either turn it off, or just cancel.</p>
+
+<h4>
+<a id="quiet-mode" class="anchor" href="#quiet-mode" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>quiet-mode</h4>
+
+<p>youtube-dl will not show any output when quiet-mode is on. </p>
+
+<p>To turn quiet-mode on, simply type the following when easy0audio is running:</p>
+
+<pre><code>quiet-mode
+</code></pre>
+
+<p>-Or-</p>
+
+<pre><code>quiet
+</code></pre>
+
+<p>You will be promted to provide "y" or "n". "y" will turn it on and "n" will either turn it off, or just cancel.</p>
+
+<h2>
+<a id="faq" class="anchor" href="#faq" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FAQ</h2>
+
+<p>Since easy-audio is very new and hardly anyone is using it, this really isn't "frequently asked questions," this is more of a "maybe some questions you have" section.</p>
+
+<h5>
+<a id="q-i-looked-at-the-code-of-easy-audio-why-does-it-look-like-a-three-year-old-who-knows-nothing-about-programming-wrote-it" class="anchor" href="#q-i-looked-at-the-code-of-easy-audio-why-does-it-look-like-a-three-year-old-who-knows-nothing-about-programming-wrote-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Q: I looked at the code of easy-audio, why does it look like a three year old who knows nothing about programming wrote it?</h5>
+
+<p>A: Well the awnser to that is, the person who wrote it knows hardly anything about programming. Well, at least bash. I have been programming for about 3 years, and as of writing this, only about two weeks in the bash programing language. This was my first program. It's simple and it works. For my purposes at least.</p>
+
+<h2>
+<a id="copyright" class="anchor" href="#copyright" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Copyright</h2>
+
+<p>Anyone is free to use, or modify easy-audio. Do what ever you want with it. All I ask is for credit!</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/nicelion/easy-audio">easy-audio</a> is maintained by <a href="https://github.com/nicelion">nicelion</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
